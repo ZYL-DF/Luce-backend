@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ichirinko.luce.mapper.UserMapper">
+
+    <select id="getAllUsers" resultType="User">
+        select * from `users`
+    </select>
+
+    <select id="getUserById" parameterType="int" resultType="User">
+        select * from `users` where id = #{id}
+    </select>
+
+    <select id="getUserByEmailAddress" parameterType="String" resultType="User">
+        select * from `users` where emailAddress = #{emailAddress}
+    </select>
+
+    <insert id="createUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        insert into `users` (`username`,
+                             `emailAddress`,
+                             `password`
+        ) values (
+                     #{username},
+                     #{emailAddress},
+                     #{password})
+    </insert>
+
+    <update id="updateUser" parameterType="User">
+        update `users` set username=#{username}, password=#{password}, emailAddress=#{emailAddress}
+        where id=#{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from `users` where id=#{id}
+    </delete>
+
+</mapper>
