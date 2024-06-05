@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ichirinko.luce.mapper.TestMapper">
+
+
+    <!--创建表的 SQL 语句-->
+    <update id="createTable" parameterType="java.lang.String">
+        CREATE TABLE IF NOT EXISTS `users`
+        (
+            `id`       int NOT NULL AUTO_INCREMENT,
+            `emailAddress` varchar(50),
+            `username` varchar(50) ,
+            `password` varchar(200),
+            PRIMARY KEY (`id`)
+        );
+
+        CREATE TABLE IF NOT EXISTS `videos`
+        (
+            `id`       int NOT NULL AUTO_INCREMENT,
+            `url`      varchar(200),
+            `coverUrl` varchar(200),
+            `title`    varchar(200),
+            `detail`   varchar(200) ,
+            `playTimes`    int default 0,
+            `uploadDate` date,
+            `uploadUserId` int,
+            PRIMARY KEY (`id`)
+        );
+
+#         CREATE TABLE IF NOT EXISTS `comments`
+#         (
+#             `id`       int NOT NULL AUTO_INCREMENT,
+#             `url`      varchar(200),
+#             `coverUrl` varchar(200),
+#             `title`    varchar(200),
+#             `detail`   varchar(200) ,
+#             `playTimes`    int default 0,
+#             `uploadDate` date,
+#             `uploadUserId` int,
+#             PRIMARY KEY (`id`),
+#             foreign key ('uploadUserId') references users (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+#         );
+    </update>
+</mapper>
