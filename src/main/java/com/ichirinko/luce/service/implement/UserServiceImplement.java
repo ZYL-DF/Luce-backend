@@ -63,4 +63,9 @@ public class UserServiceImplement implements UserService {
         }
 
     }
+
+    @Override
+    public User getUserById(int id) {
+        return userMapper.getUserById(id);
+    }
 }

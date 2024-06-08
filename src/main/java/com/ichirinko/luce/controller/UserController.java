@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("api/user")
 public class UserController {
 
     private final UserService userService;
@@ -43,7 +43,7 @@ public class UserController {
 
             // 生成JWT的令牌
             String token = JWTService.getToken(payload);
-            UserLoginResponseDTO responseDTO = new UserLoginResponseDTO(token);
+            UserLoginResponseDTO responseDTO = new UserLoginResponseDTO(token,result.getId(),result.getEmailAddress(),result.getUsername());
 
 
             return new ResponseEntity<>(new ResponseDTO<>("登录成功",responseDTO),HttpStatus.OK);
@@ -89,6 +89,23 @@ public class UserController {
         }
 
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ResponseDTO<UserDTO>> getUserById (@PathVariable("id") int id) {
+
+        var user = userService.getUserById(id);
+
+
+        if(user != null) {
+            UserDTO userDTO = new UserDTO(user);
+            return new ResponseEntity<>(new ResponseDTO<>("获取用户成功",userDTO), HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(new ResponseDTO<>("用户不存在",null),HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
 
     @PutMapping("/")
     public ResponseEntity<ResponseDTO<UserDTO>> updateUserInfo (@RequestBody User user){

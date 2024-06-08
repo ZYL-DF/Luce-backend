@@ -13,4 +13,6 @@ public interface UserService {
     List<User> getAllUser();
 
     User updateUserInfo(User user);
+
+    User getUserById(int id);
 }

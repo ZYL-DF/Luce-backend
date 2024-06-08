@@ -9,20 +9,20 @@ public class UserDTO implements Serializable {
     private int id;
     private String emailAddress;
     private String username;
-    private String password;
+    // private String password;
 
     public UserDTO(User user) {
         this.id = user.getId();
         this.emailAddress = user.getEmailAddress();
         this.username = user.getUsername();
-        this.password = user.getPassword();
+        // this.password = user.getPassword();
     }
 
     public UserDTO(int id, String emailAddress, String username, String password) {
         this.id = id;
         this.emailAddress = emailAddress;
         this.username = username;
-        this.password = password;
+        // this.password = password;
     }
 
     public int getId() {
@@ -49,12 +49,12 @@ public class UserDTO implements Serializable {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+//    public String getPassword() {
+//        return password;
+//    }
+//
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
 }
 

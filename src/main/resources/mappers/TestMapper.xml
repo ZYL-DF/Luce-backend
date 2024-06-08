@@ -24,6 +24,7 @@
             `playTimes`    int default 0,
             `uploadDate` date,
             `uploadUserId` int,
+            `length` time not null ,
             PRIMARY KEY (`id`)
         );
 

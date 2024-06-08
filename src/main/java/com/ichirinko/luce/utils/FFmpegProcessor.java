@@ -32,7 +32,7 @@ public class FFmpegProcessor {
         recorder.setOption("hls_flags", "delete_segments");
         recorder.setOption("hls_delete_threshold", "1");
         recorder.setOption("hls_segment_type", "mpegts");
-        recorder.setOption("hls_segment_filename", serverUrl + "/video/upload/test-%d.ts");
+        recorder.setOption("hls_segment_filename", serverUrl + "/api/video/saveAsM3u8/2/2-%d.ts");
         recorder.setOption("hls_key_info_file", infoUrl);
 
         // http属性
