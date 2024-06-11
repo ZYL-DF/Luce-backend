@@ -7,28 +7,28 @@
     <update id="createTable" parameterType="java.lang.String">
         CREATE TABLE IF NOT EXISTS `users`
         (
-            `id`       int NOT NULL AUTO_INCREMENT,
+            `id`           int NOT NULL AUTO_INCREMENT,
             `emailAddress` varchar(50),
-            `username` varchar(50) ,
-            `password` varchar(200),
+            `username`     varchar(50),
+            `password`     varchar(200),
             PRIMARY KEY (`id`)
         );
 
         CREATE TABLE IF NOT EXISTS `videos`
         (
-            `id`       int NOT NULL AUTO_INCREMENT,
-            `url`      varchar(200),
-            `coverUrl` varchar(200),
-            `title`    varchar(200),
-            `detail`   varchar(200) ,
-            `playTimes`    int default 0,
-            `uploadDate` date,
+            `id`           int NOT NULL AUTO_INCREMENT,
+            `url`          varchar(200),
+            `coverUrl`     varchar(200),
+            `title`        varchar(200),
+            `detail`       varchar(200),
+            `playTimes`    int       default 0,
+            `uploadDate`   timestamp DEFAULT CURRENT_TIMESTAMP,
             `uploadUserId` int,
-            `length` time not null ,
+            `length`       time,
             PRIMARY KEY (`id`)
         );
 
-#         CREATE TABLE IF NOT EXISTS `comments`
+        #         CREATE TABLE IF NOT EXISTS `comments`
 #         (
 #             `id`       int NOT NULL AUTO_INCREMENT,
 #             `url`      varchar(200),

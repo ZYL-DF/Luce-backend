@@ -3,6 +3,58 @@
 <mapper namespace="com.ichirinko.luce.mapper.VideoMapper">
 
     <select id="getAllVideo" resultType="Video">
-        select * from `videos`
+        select *
+        from `videos`
     </select>
+
+    <select id="getVideoById" parameterType="int" resultType="Video">
+        select *
+        from `videos`
+        where id = #{id}
+    </select>
+
+    <insert id="addVideo" parameterType="Video" useGeneratedKeys="true" keyProperty="id">
+        insert into `videos` (`url`, `coverUrl`, `title`, `detail`, `playTimes`, `uploadUserId`, `length`)
+        values (#{url}, #{coverUrl}, #{title}, #{detail}, #{playTimes}, #{uploadUserId}, #{length})
+    </insert>
+
+    <update id="updateVideo" parameterType="Video">
+        update `videos`
+        set url          = #{url},
+            coverUrl     = #{coverUrl},
+            title        = #{title},
+            detail       = #{detail},
+            playTimes    = #{playTimes},
+            uploadUserId = #{uploadUserId},
+            length       = #{length}
+        where id = #{id}
+    </update>
+
+    <update id="updateVideoPlayTimes" parameterType="int">
+        update `videos`
+        set playTimes = playTimes + 1
+        where id = #{id};
+    </update>
+
+    <update id="createCommentsTable" parameterType="String">
+        create table IF NOT EXISTS ${tableName}
+        (
+            `id`      int NOT NULL AUTO_INCREMENT,
+            `comment` varchar(200),
+            `date`    timestamp DEFAULT CURRENT_TIMESTAMP,
+            `userId`  int,
+            PRIMARY KEY (`id`)
+        )
+    </update>
+
+    <select id="getComments" parameterType="String" resultType="Comment">
+        select *
+        from ${tableName}
+        order by `date` desc
+    </select>
+
+    <insert id="addComment">
+        insert into ${tableName} (`comment`, `userId`)
+        values (#{comment}, #{userId})
+    </insert>
 </mapper>

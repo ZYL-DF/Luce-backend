@@ -11,9 +11,6 @@ public class Video {
     private String title;
     private String detail;
     private int playTimes;
-
-
-
     private Date uploadDate;
     private int uploadUserId;
     private Time length;
